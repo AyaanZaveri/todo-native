@@ -2,6 +2,19 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { DateTime } from "luxon";
 import Icon from "react-native-vector-icons/Ionicons";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
+import { auth, db } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 interface Props {
   title: string;
@@ -13,18 +26,29 @@ interface Props {
 }
 
 const Task = ({ title, date, completed, id, tasks, setTasks }: Props) => {
-  const handleDelete = (id: number) => {
-    setTasks(tasks.filter((task: any) => task.id !== id));
+  const [user] = useAuthState(auth);
+
+  const handleComplete = () => {
+    setDoc(tasks, {
+      id,
+      title,
+      date,
+      completed: !completed,
+    });
+  };
+  const tasksRef = collection(db, `users/${user?.uid}/tasks`);
+
+  const [tasksSnapshot] = useCollection(tasksRef);
+
+  const handleDelete = async (id: number) => {
+    const taskDoc = tasksSnapshot?.docs.find((doc: any) => doc.data().id == id)?.id;
+    await deleteDoc(doc(tasksRef, taskDoc));
   };
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.task}>{title}</Text>
-        <Text style={styles.date}>
-          {date.seconds
-            ? DateTime.fromSeconds(date?.seconds).toFormat("MMMM dd, yyyy")
-            : null}
-        </Text>
+        <Text style={styles.date}>{date.seconds}</Text>
       </View>
       <View>
         <Pressable onPress={() => handleDelete(id)}>
