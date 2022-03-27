@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import Task from "./components/Task";
 import Icon from "react-native-vector-icons/Ionicons";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 interface Tasks {
   id: number;
@@ -16,6 +18,8 @@ interface Tasks {
   date: number;
   completed: boolean;
 }
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [text, setText] = useState<string>("");
@@ -39,49 +43,54 @@ export default function App() {
 
   return (
     <SafeAreaView>
-      <View style={styles.container}>
-        <Text style={styles.headingLg}>Tacit</Text>
-        <View style={styles.addTask}>
-          <TextInput
-            value={text}
-            placeholder="Task"
-            keyboardType="default"
-            onChangeText={(newText) => setText(newText)}
-            style={styles.input}
-          />
-          <Pressable
-            style={({ pressed }) => [
-              {
-                backgroundColor: pressed ? "#4338ca" : "#4f46e5",
-              },
-              styles.button,
-            ]}
-            onPress={handleTask}
-          >
-            <Text
-              style={{
-                color: "white",
-                fontSize: 16,
-              }}
-            >
-              <Icon name="add" size={24} />
-            </Text>
-          </Pressable>
-        </View>
-        <View style={styles.tasks}>
-          {tasks.map((task: any) => (
-            <Task
-              tasks={tasks}
-              key={task.id}
-              title={task.title}
-              date={task.date}
-              completed={task.completed}
-              id={task.id}
-              setTasks={setTasks}
-            />
-          ))}
-        </View>
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator>
+          {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
+          {/* <View style={styles.container}>
+            <Text style={styles.headingLg}>Tacit</Text>
+            <View style={styles.addTask}>
+              <TextInput
+                value={text}
+                placeholder="Task"
+                keyboardType="default"
+                onChangeText={(newText) => setText(newText)}
+                style={styles.input}
+              />
+              <Pressable
+                style={({ pressed }) => [
+                  {
+                    backgroundColor: pressed ? "#4338ca" : "#4f46e5",
+                  },
+                  styles.button,
+                ]}
+                onPress={handleTask}
+              >
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 16,
+                  }}
+                >
+                  <Icon name="add" size={24} />
+                </Text>
+              </Pressable>
+            </View>
+            <View style={styles.tasks}>
+              {tasks.map((task: any) => (
+                <Task
+                  tasks={tasks}
+                  key={task.id}
+                  title={task.title}
+                  date={task.date}
+                  completed={task.completed}
+                  id={task.id}
+                  setTasks={setTasks}
+                />
+              ))}
+            </View>
+          </View> */}
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaView>
   );
 }
