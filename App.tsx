@@ -11,6 +11,8 @@ import Task from "./components/Task";
 import Icon from "react-native-vector-icons/Ionicons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Login from "./screens/Login";
+import Home from "./screens/Home";
 
 interface Tasks {
   id: number;
@@ -42,11 +44,11 @@ export default function App() {
   };
 
   return (
-    <SafeAreaView>
-      <NavigationContainer>
-        <Stack.Navigator>
-          {/* <Stack.Screen name="Home" component={HomeScreen} /> */}
-          {/* <View style={styles.container}>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Home" component={Home} />
+        {/* <View style={styles.container}>
             <Text style={styles.headingLg}>Tacit</Text>
             <View style={styles.addTask}>
               <TextInput
@@ -89,46 +91,45 @@ export default function App() {
               ))}
             </View>
           </View> */}
-        </Stack.Navigator>
-      </NavigationContainer>
-    </SafeAreaView>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    display: "flex",
-    paddingHorizontal: 24,
-  },
-  headingLg: {
-    fontSize: 32,
-    fontWeight: "bold",
-    marginTop: 24,
-  },
-  paragraph: {
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  button: {
-    padding: 8,
-    borderRadius: 4,
-    fontSize: 16,
-  },
-  addTask: {
-    display: "flex",
-    flexDirection: "row",
-    marginTop: 24,
-  },
-  input: {
-    fontSize: 16,
-    backgroundColor: "#f8fafc",
-    flex: 1,
-    paddingLeft: 12,
-    marginRight: 12,
-    borderRadius: 4,
-  },
-  tasks: {
-    marginTop: 24,
-  },
+  // container: {
+  //   display: "flex",
+  //   paddingHorizontal: 24,
+  // },
+  // headingLg: {
+  //   fontSize: 32,
+  //   fontWeight: "bold",
+  //   marginTop: 24,
+  // },
+  // paragraph: {
+  //   fontSize: 18,
+  //   fontWeight: "bold",
+  //   textAlign: "center",
+  // },
+  // button: {
+  //   padding: 8,
+  //   borderRadius: 4,
+  //   fontSize: 16,
+  // },
+  // addTask: {
+  //   display: "flex",
+  //   flexDirection: "row",
+  //   marginTop: 24,
+  // },
+  // input: {
+  //   fontSize: 16,
+  //   backgroundColor: "#f8fafc",
+  //   flex: 1,
+  //   paddingLeft: 12,
+  //   marginRight: 12,
+  //   borderRadius: 4,
+  // },
+  // tasks: {
+  //   marginTop: 24,
+  // },
 });
