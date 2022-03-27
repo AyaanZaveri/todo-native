@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, { useState } from "react";
 import {
   Text,
@@ -8,7 +7,7 @@ import {
   Pressable,
   SafeAreaView,
 } from "react-native";
-import Constants from "expo-constants";
+import Task from "./components/Task";
 
 interface Tasks {
   id: number;
@@ -41,28 +40,41 @@ export default function App() {
     <SafeAreaView>
       <View style={styles.container}>
         <Text style={styles.headingLg}>Tacit</Text>
-        {tasks.map((task: any) => (
-          <Text key={task.id} style={styles.paragraph}>
-            {task.title}
-          </Text>
-        ))}
-
         <View style={styles.addTask}>
           <TextInput
             value={text}
             placeholder="Task"
             keyboardType="default"
             onChangeText={(newText) => setText(newText)}
+            style={styles.input}
           />
-          <Pressable style={styles.button} onPress={handleTask}>
+          <Pressable
+            style={({ pressed }) => [
+              {
+                backgroundColor: pressed ? "#4338ca" : "#4f46e5",
+              },
+              styles.button,
+            ]}
+            onPress={handleTask}
+          >
             <Text
               style={{
                 color: "white",
+                fontSize: 16,
               }}
             >
               Add Task
             </Text>
           </Pressable>
+        </View>
+        <View style={styles.tasks}>
+          {tasks.map((task: any) => (
+            <Task
+              title={task.title}
+              date={task.date}
+              completed={task.completed}
+            />
+          ))}
         </View>
       </View>
     </SafeAreaView>
@@ -84,16 +96,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   button: {
-    backgroundColor: "#4f46e5",
     paddingVertical: 10,
     paddingHorizontal: 16,
     borderRadius: 4,
+    fontSize: 16,
   },
   addTask: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    marginTop: 24,
+  },
+  input: {
+    fontSize: 16,
+  },
+  tasks: {
     marginTop: 24,
   },
 });
