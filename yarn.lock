@@ -1473,6 +1473,11 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
+"@types/luxon@^2.3.1":
+  "integrity" "sha512-nAPUltOT28fal2eDZz8yyzNhBjHw1NEymFBP7Q9iCShqpflWPybxHbD7pw/46jQmT+HXOy1QN5hNTms8MOTlOQ=="
+  "resolved" "https://registry.npmjs.org/@types/luxon/-/luxon-2.3.1.tgz"
+  "version" "2.3.1"
+
 "@types/minimist@^1.2.0":
   "integrity" "sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ=="
   "resolved" "https://registry.npmjs.org/@types/minimist/-/minimist-1.2.2.tgz"

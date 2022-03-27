@@ -70,6 +70,7 @@ export default function App() {
         <View style={styles.tasks}>
           {tasks.map((task: any) => (
             <Task
+              key={task.id}
               title={task.title}
               date={task.date}
               completed={task.completed}
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
   headingLg: {
     fontSize: 32,
     fontWeight: "bold",
+    marginTop: 24,
   },
   paragraph: {
     fontSize: 18,
@@ -96,20 +98,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   button: {
-    paddingVertical: 10,
-    paddingHorizontal: 16,
+    padding: 10,
     borderRadius: 4,
     fontSize: 16,
   },
   addTask: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
     marginTop: 24,
   },
   input: {
     fontSize: 16,
+    backgroundColor: "#f8fafc",
+    flex: 1,
+    paddingLeft: 12,
+    marginRight: 12,
+    borderRadius: 4,
   },
   tasks: {
     marginTop: 24,
