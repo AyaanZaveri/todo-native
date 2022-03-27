@@ -13,7 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import { signOut } from "firebase/auth";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 
 interface Tasks {
@@ -52,7 +52,7 @@ const Home = () => {
     if (text) {
       addDoc(tasksRef, {
         title: text,
-        date: Date.now(),
+        date: serverTimestamp(),
         completed: false,
         id: Math.random(),
       });

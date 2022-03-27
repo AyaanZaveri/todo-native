@@ -5,16 +5,12 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 interface Props {
   title: string;
-  date: number;
+  date: { [key: string]: number };
   completed: boolean;
   id: number;
   tasks: any;
   setTasks: any;
 }
-
-const getUnixTime = (date: DateTime) => {
-  return DateTime.fromSeconds(date.toSeconds()).toFormat("MMMM dd, yyyy");
-};
 
 const Task = ({ title, date, completed, id, tasks, setTasks }: Props) => {
   const handleDelete = (id: number) => {
@@ -25,7 +21,9 @@ const Task = ({ title, date, completed, id, tasks, setTasks }: Props) => {
       <View>
         <Text style={styles.task}>{title}</Text>
         <Text style={styles.date}>
-          {getUnixTime(DateTime.fromSeconds(date))}
+          {date.seconds
+            ? DateTime.fromSeconds(date?.seconds).toFormat("MMMM dd, yyyy")
+            : null}
         </Text>
       </View>
       <View>
