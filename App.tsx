@@ -6,11 +6,9 @@ import {
   TextInput,
   Pressable,
   SafeAreaView,
-  useColorScheme,
 } from "react-native";
 import Task from "./components/Task";
 import Icon from "react-native-vector-icons/Ionicons";
-import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 interface Tasks {
   id: number;
@@ -70,22 +68,16 @@ export default function App() {
             </Text>
           </Pressable>
         </View>
-        <View style={{ opacity: 0, position: "absolute" }}>
-          <RNDateTimePicker
-            mode="date"
-            maximumDate={new Date(2300, 10, 20)}
-            minimumDate={new Date(1950, 0, 1)}
-            value={new Date()}
-            display="inline"
-          />
-        </View>
         <View style={styles.tasks}>
           {tasks.map((task: any) => (
             <Task
+              tasks={tasks}
               key={task.id}
               title={task.title}
               date={task.date}
               completed={task.completed}
+              id={task.id}
+              setTasks={setTasks}
             />
           ))}
         </View>
