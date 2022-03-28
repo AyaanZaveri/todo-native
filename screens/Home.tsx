@@ -78,7 +78,7 @@ const Home = () => {
           <Pressable
             style={({ pressed }) => [
               {
-                backgroundColor: pressed ? "#4338ca" : "#4f46e5",
+                backgroundColor: pressed ? "#4338ca" : "#2563eb",
               },
               styles.button,
             ]}

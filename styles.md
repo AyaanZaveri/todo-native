@@ -1,2 +1,2 @@
 # Colors
-Indigo 600: #4f46e5
+Indigo 600: #2563eb

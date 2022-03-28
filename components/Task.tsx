@@ -41,14 +41,16 @@ const Task = ({ title, date, completed, id, tasks, setTasks }: Props) => {
   const [tasksSnapshot] = useCollection(tasksRef);
 
   const handleDelete = async (id: number) => {
-    const taskDoc = tasksSnapshot?.docs.find((doc: any) => doc.data().id == id)?.id;
+    const taskDoc = tasksSnapshot?.docs.find(
+      (doc: any) => doc.data().id == id
+    )?.id;
     await deleteDoc(doc(tasksRef, taskDoc));
   };
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.task}>{title}</Text>
-        <Text style={styles.date}>{date.seconds}</Text>
+        <Text style={styles.date}>{}</Text>
       </View>
       <View>
         <Pressable onPress={() => handleDelete(id)}>

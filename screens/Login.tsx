@@ -14,10 +14,13 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigation } from "@react-navigation/core";
+import Icon from "react-native-vector-icons/Ionicons";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   const navigation = useNavigation();
 
@@ -40,7 +43,7 @@ const Login = () => {
         console.log("Registered as: ", user.email);
       })
       .catch((error) => {
-        alert(error.message);
+        setError(error.message);
       });
   };
 
@@ -51,9 +54,21 @@ const Login = () => {
         console.log("Logged in as: ", user.email);
       })
       .catch((error) => {
-        alert(error.message);
+        setError(error.message);
       });
   };
+
+  useEffect(() => {
+    if (email == "" || password == "") {
+      setError("Please fill in all fields!");
+    } else if (password.length < 6) {
+      setError("Password must be at least 6 characters long!");
+    } else if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+      setError("Invalid email!");
+    } else {
+      setError("");
+    }
+  }, [email, password]);
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -66,22 +81,34 @@ const Login = () => {
           style={styles.input}
           autoCapitalize="none"
         />
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={(text: string) => setPassword(text)}
-          style={styles.input}
-          secureTextEntry
-          autoCapitalize="none"
-        />
+        <View style={styles.passwordContainer}>
+          <Pressable
+            onPress={() => setShowPassword(!showPassword)}
+            style={styles.eyeIcon}
+          >
+            <Icon
+              name={showPassword ? "ios-eye" : "ios-eye-off"}
+              size={24}
+              color="#2563eb"
+            />
+          </Pressable>
+          <TextInput
+            placeholder="Password"
+            value={password}
+            onChangeText={(text: string) => setPassword(text)}
+            style={styles.input}
+            secureTextEntry={!showPassword}
+            autoCapitalize="none"
+          />
+        </View>
       </View>
-
+      {error ? <Text style={styles.error}>{error}</Text> : null}
       <View style={styles.buttonContainer}>
         <Pressable
           onPress={handleLogin}
           style={({ pressed }) => [
             {
-              backgroundColor: pressed ? "#4338ca" : "#4f46e5",
+              backgroundColor: pressed ? "#1d4ed8" : "#2563eb",
             },
             styles.button,
           ]}
@@ -92,7 +119,7 @@ const Login = () => {
           onPress={handleRegister}
           style={({ pressed }) => [
             {
-              backgroundColor: pressed ? "#4338ca" : "#4f46e5",
+              backgroundColor: pressed ? "#1d4ed8" : "#2563eb",
             },
             styles.button,
           ]}
@@ -122,14 +149,14 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#f8fafc",
-    borderRadius: 5,
+    borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 12,
-    marginTop: 6,
     fontSize: 16,
+    width: "100%",
   },
   buttonContainer: {
-    width: "60%",
+    width: "80%",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 24,
@@ -138,11 +165,30 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 12,
     marginTop: 6,
-    borderRadius: 5,
+    borderRadius: 12,
     alignItems: "center",
   },
   buttonText: {
     color: "white",
     fontSize: 16,
+    fontWeight: "bold",
+  },
+  passwordContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f8fafc",
+    borderRadius: 12,
+    marginTop: 6,
+  },
+  eyeIcon: {
+    position: "absolute",
+    right: 16,
+    zIndex: 1,
+  },
+  error: {
+    color: "#ef4444",
+    fontSize: 12,
+    marginTop: 12,
+    fontWeight: "bold",
   },
 });
