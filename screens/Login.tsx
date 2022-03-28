@@ -2,6 +2,7 @@ import {
   KeyboardAvoidingView,
   Pressable,
   StyleSheet,
+  Switch,
   Text,
   TextInput,
   View,
@@ -21,6 +22,7 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const [showLogin, setShowLogin] = useState<boolean>(true);
 
   const navigation = useNavigation();
 
@@ -126,6 +128,11 @@ const Login = () => {
         >
           <Text style={styles.buttonText}>Register</Text>
         </Pressable>
+        <Switch
+          onValueChange={() => setShowLogin(!showLogin)}
+          value={showLogin}
+          style={styles.switch}
+        />
       </View>
     </KeyboardAvoidingView>
   );
@@ -190,5 +197,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 12,
     fontWeight: "bold",
+  },
+  switch: {
+    marginTop: 12,
   },
 });
