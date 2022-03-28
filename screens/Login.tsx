@@ -76,19 +76,13 @@ const Login = () => {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <Text style={styles.headingLg}>Tacit</Text>
-      <SvgUri
-        width="100%"
-        height="100%"
-        uri="/assets/undraw_tasks_re_v2v4.svg"
-      />
       <View style={styles.inputContainer}>
         {showLogin ? (
           <TextInput
             placeholder="Name"
             value={name}
             onChangeText={(text: string) => setEmail(text)}
-            style={styles.input}
+            style={[styles.input, { marginBottom: 6 }]}
             autoCapitalize="none"
           />
         ) : null}
@@ -196,6 +190,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#f8fafc",
     borderRadius: 12,
+    marginTop: 8,
   },
   eyeIcon: {
     position: "absolute",
