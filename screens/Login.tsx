@@ -1,4 +1,5 @@
 import {
+  Image,
   KeyboardAvoidingView,
   Pressable,
   StyleSheet,
@@ -76,6 +77,13 @@ const Login = () => {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
+      <View style={styles.svgTask}>
+        <SvgUri
+          uri={
+            "https://github.com/AyaanZaveri/todo-native/raw/master/assets/undraw_tasks_re_v2v4.svg"
+          }
+        />
+      </View>
       <View style={styles.inputContainer}>
         {showLogin ? (
           <TextInput
@@ -153,7 +161,6 @@ const styles = StyleSheet.create({
   headingLg: {
     fontSize: 32,
     fontWeight: "bold",
-    marginBottom: 24,
   },
   inputContainer: {
     width: "80%",
@@ -190,7 +197,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#f8fafc",
     borderRadius: 12,
-    marginTop: 8,
+    marginTop: 6,
   },
   eyeIcon: {
     position: "absolute",
@@ -213,5 +220,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginHorizontal: 12,
+  },
+  tinyLogo: {
+    width: 100,
+    height: 100,
+    marginBottom: 24,
+  },
+  svgTask: {
+    width: "100%",
+    height: "100%",
   },
 });
