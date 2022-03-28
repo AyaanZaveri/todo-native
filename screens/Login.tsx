@@ -16,13 +16,15 @@ import {
 } from "firebase/auth";
 import { useNavigation } from "@react-navigation/core";
 import Icon from "react-native-vector-icons/Ionicons";
+import { SvgUri } from "react-native-svg";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
-  const [showLogin, setShowLogin] = useState<boolean>(true);
+  const [showLogin, setShowLogin] = useState<boolean>(false);
 
   const navigation = useNavigation();
 
@@ -75,7 +77,21 @@ const Login = () => {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       <Text style={styles.headingLg}>Tacit</Text>
+      <SvgUri
+        width="100%"
+        height="100%"
+        uri="/assets/undraw_tasks_re_v2v4.svg"
+      />
       <View style={styles.inputContainer}>
+        {showLogin ? (
+          <TextInput
+            placeholder="Name"
+            value={name}
+            onChangeText={(text: string) => setEmail(text)}
+            style={styles.input}
+            autoCapitalize="none"
+          />
+        ) : null}
         <TextInput
           placeholder="Email"
           value={email}
@@ -107,7 +123,7 @@ const Login = () => {
       {error ? <Text style={styles.error}>{error}</Text> : null}
       <View style={styles.buttonContainer}>
         <Pressable
-          onPress={handleLogin}
+          onPress={showLogin ? handleRegister : handleLogin}
           style={({ pressed }) => [
             {
               backgroundColor: pressed ? "#1d4ed8" : "#2563eb",
@@ -115,24 +131,18 @@ const Login = () => {
             styles.button,
           ]}
         >
-          <Text style={styles.buttonText}>Login</Text>
+          <Text style={styles.buttonText}>
+            {showLogin ? "Register" : "Login"}
+          </Text>
         </Pressable>
-        <Pressable
-          onPress={handleRegister}
-          style={({ pressed }) => [
-            {
-              backgroundColor: pressed ? "#1d4ed8" : "#2563eb",
-            },
-            styles.button,
-          ]}
-        >
-          <Text style={styles.buttonText}>Register</Text>
-        </Pressable>
-        <Switch
-          onValueChange={() => setShowLogin(!showLogin)}
-          value={showLogin}
-          style={styles.switch}
-        />
+        <View style={styles.loginSwitch}>
+          <Text style={styles.switchText}>Login</Text>
+          <Switch
+            value={showLogin}
+            onValueChange={() => setShowLogin(!showLogin)}
+          />
+          <Text style={styles.switchText}>Register</Text>
+        </View>
       </View>
     </KeyboardAvoidingView>
   );
@@ -153,6 +163,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: "80%",
+    flexDirection: "column",
   },
   input: {
     backgroundColor: "#f8fafc",
@@ -185,7 +196,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#f8fafc",
     borderRadius: 12,
-    marginTop: 6,
   },
   eyeIcon: {
     position: "absolute",
@@ -198,7 +208,15 @@ const styles = StyleSheet.create({
     marginTop: 12,
     fontWeight: "bold",
   },
-  switch: {
-    marginTop: 12,
+  loginSwitch: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 24,
+  },
+  switchText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginHorizontal: 12,
   },
 });
