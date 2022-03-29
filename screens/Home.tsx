@@ -61,11 +61,19 @@ const Home = () => {
     setText("");
   };
 
+  const usersRef = collection(db, "users");
+  const [usersSnapshot] = useCollection(usersRef);
+
+  useEffect(() => {
+    if (usersSnapshot) {
+      console.log(usersSnapshot.docs);
+    }
+  }, [usersSnapshot]);
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <Text style={styles.headingLg}>Tacit</Text>
-        <Text>{user?.email}</Text>
         <Button title="Logout" onPress={() => signOut(auth)} />
         <View style={styles.addTask}>
           <TextInput

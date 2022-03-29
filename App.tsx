@@ -32,20 +32,6 @@ const navigationTheme = {
 };
 
 export default function App() {
-  const [user] = useAuthState(auth);
-
-  const usersRef = collection(db, "users");
-
-  useEffect(() => {
-    if (user) {
-      setDoc(doc(usersRef, user?.uid), {
-        email: user?.email,
-        uid: user?.uid,
-        displayName: user?.displayName,
-        photoURL: user?.photoURL,
-      });
-    }
-  }, [user]);
 
   return (
     <NavigationContainer theme={navigationTheme}>

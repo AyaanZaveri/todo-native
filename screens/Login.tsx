@@ -18,6 +18,8 @@ import {
 import { useNavigation } from "@react-navigation/core";
 import Icon from "react-native-vector-icons/Ionicons";
 import { SvgUri } from "react-native-svg";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { collection, doc, setDoc } from "firebase/firestore";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -26,6 +28,10 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [showLogin, setShowLogin] = useState<boolean>(false);
+
+  const [user] = useAuthState(auth);
+
+  const usersRef = collection(db, "users");
 
   const navigation = useNavigation();
 
@@ -41,8 +47,8 @@ const Login = () => {
     return unsubscribe;
   }, []);
 
-  const handleRegister = () => {
-    createUserWithEmailAndPassword(auth, email, password)
+  const handleRegister = async () => {
+    await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("Registered as: ", user.email);
@@ -50,10 +56,17 @@ const Login = () => {
       .catch((error) => {
         setError(error.message);
       });
+
+    await setDoc(doc(usersRef, user?.uid), {
+      email: user?.email,
+      displayName: name,
+      uid: user?.uid,
+      photoURL: user?.photoURL,
+    });
   };
 
-  const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password)
+  const handleLogin = async () => {
+    await signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log("Logged in as: ", user.email);
@@ -77,22 +90,18 @@ const Login = () => {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
-      <View style={styles.svgTask}>
-        <SvgUri
-          uri={
-            "https://github.com/AyaanZaveri/todo-native/raw/master/assets/undraw_tasks_re_v2v4.svg"
-          }
-        />
-      </View>
       <View style={styles.inputContainer}>
+        <Text style={styles.headingMd}>{showLogin ? "Register" : "Login"}</Text>
         {showLogin ? (
-          <TextInput
-            placeholder="Name"
-            value={name}
-            onChangeText={(text: string) => setEmail(text)}
-            style={[styles.input, { marginBottom: 6 }]}
-            autoCapitalize="none"
-          />
+          <>
+            <TextInput
+              placeholder="Name"
+              value={name}
+              onChangeText={(text: string) => setName(text)}
+              style={[styles.input, { marginBottom: 6 }]}
+              autoCapitalize="none"
+            />
+          </>
         ) : null}
         <TextInput
           placeholder="Email"
@@ -121,8 +130,8 @@ const Login = () => {
             autoCapitalize="none"
           />
         </View>
+        {error ? <Text style={styles.error}>{error}</Text> : null}
       </View>
-      {error ? <Text style={styles.error}>{error}</Text> : null}
       <View style={styles.buttonContainer}>
         <Pressable
           onPress={showLogin ? handleRegister : handleLogin}
@@ -161,6 +170,7 @@ const styles = StyleSheet.create({
   headingLg: {
     fontSize: 32,
     fontWeight: "bold",
+    marginBottom: 32,
   },
   inputContainer: {
     width: "80%",
@@ -209,6 +219,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 12,
     fontWeight: "bold",
+    textAlign: "center",
   },
   loginSwitch: {
     flexDirection: "row",
@@ -221,13 +232,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginHorizontal: 12,
   },
-  tinyLogo: {
-    width: 100,
-    height: 100,
+  headingMd: {
+    fontSize: 24,
+    fontWeight: "bold",
     marginBottom: 24,
-  },
-  svgTask: {
-    width: "100%",
-    height: "100%",
   },
 });
