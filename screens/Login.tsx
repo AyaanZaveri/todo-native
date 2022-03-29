@@ -19,7 +19,8 @@ import { useNavigation } from "@react-navigation/core";
 import Icon from "react-native-vector-icons/Ionicons";
 import { SvgUri } from "react-native-svg";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { collection, doc, query, setDoc, where } from "firebase/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -32,6 +33,17 @@ const Login = () => {
   const [user] = useAuthState(auth);
 
   const usersRef = collection(db, "users");
+
+  useEffect(() => {
+    if (user) {
+      setDoc(doc(usersRef, user?.uid), {
+        email: user?.email,
+        displayName: name,
+        uid: user?.uid,
+        photoURL: user?.photoURL,
+      });
+    }
+  }, [user]);
 
   const navigation = useNavigation();
 
@@ -47,33 +59,34 @@ const Login = () => {
     return unsubscribe;
   }, []);
 
-  const handleRegister = async () => {
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log("Registered as: ", user.email);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
-
-    await setDoc(doc(usersRef, user?.uid), {
-      email: user?.email,
-      displayName: name,
-      uid: user?.uid,
-      photoURL: user?.photoURL,
-    });
+  const handleRegister = () => {
+    if (email && password && name) {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log("Registered as: ", user.email);
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    } else {
+      setError("Please fill in all fields");
+    }
   };
 
   const handleLogin = async () => {
-    await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredentials) => {
-        const user = userCredentials.user;
-        console.log("Logged in as: ", user.email);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+    if (email && password) {
+      await signInWithEmailAndPassword(auth, email, password)
+        .then((userCredentials) => {
+          const user = userCredentials.user;
+          console.log("Logged in as: ", user.email);
+        })
+        .catch((error) => {
+          setError(error.message);
+        });
+    } else {
+      setError("Please fill in all fields");
+    }
   };
 
   useEffect(() => {
@@ -87,6 +100,10 @@ const Login = () => {
       setError("");
     }
   }, [email, password]);
+
+  const handleGoogleLogin = () => {
+    
+  }
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -144,6 +161,19 @@ const Login = () => {
         >
           <Text style={styles.buttonText}>
             {showLogin ? "Register" : "Login"}
+          </Text>
+        </Pressable>
+        <Pressable
+          onPress={showLogin ? handleRegister : handleLogin}
+          style={({ pressed }) => [
+            {
+              backgroundColor: pressed ? "#1d4ed8" : "#2563eb",
+            },
+            styles.button,
+          ]}
+        >
+          <Text style={styles.buttonText}>
+            Sign-In With Google
           </Text>
         </Pressable>
         <View style={styles.loginSwitch}>
