@@ -17,13 +17,20 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ayaanzaveri.todo",
+      "config": {
+        "googeSignIn": {
+          "reservedClientID": "com.googleusercontent.apps.566594590897-63ncjoq1sc2itue4n1008l0qdju7stpq"
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.ayaanzaveri.todo"
     },
     "web": {
       "favicon": "./assets/favicon.png"

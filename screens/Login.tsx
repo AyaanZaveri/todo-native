@@ -1,4 +1,5 @@
 import {
+  Button,
   Image,
   KeyboardAvoidingView,
   Pressable,
@@ -20,7 +21,16 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { SvgUri } from "react-native-svg";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { collection, doc, query, setDoc, where } from "firebase/firestore";
-import { useCollection } from "react-firebase-hooks/firestore";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithCredential,
+} from "firebase/auth";
+import * as Google from "expo-auth-session/providers/google";
+import * as WebBrowser from "expo-web-browser";
+import { makeRedirectUri } from "expo-auth-session";
+
+WebBrowser.maybeCompleteAuthSession();
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -29,6 +39,8 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [showLogin, setShowLogin] = useState<boolean>(false);
+  const [accessToken, setAccessToken] = useState<string>("");
+  const [userInfo, setUserInfo] = useState<any>();
 
   const [user] = useAuthState(auth);
 
@@ -101,9 +113,25 @@ const Login = () => {
     }
   }, [email, password]);
 
-  const handleGoogleLogin = () => {
-    
-  }
+  // const [request, response, promptAsync] = Google.useAuthRequest({
+  //   scopes: ["profile", "email"],
+  //   iosClientId:
+  //     "566594590897-i8f2np6gdst90ogemq32ivo3ca6hli61.apps.googleusercontent.com",
+  //   expoClientId:
+  //     "566594590897-qkb391d2i3ocb3gj50q0d2n3ikctahl2.apps.googleusercontent.com",
+  // });
+
+  // useEffect(() => {
+  //   if (response?.type == "success") {
+  //     setAccessToken(response.authentication?.accessToken as string);
+  //   }
+  // }, [response]);
+
+  // const getUserInfo = async () => {
+  //   let userInfoRes = await fetch(
+  //     `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${accessToken}`
+  //   );
+  // };
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -161,19 +189,6 @@ const Login = () => {
         >
           <Text style={styles.buttonText}>
             {showLogin ? "Register" : "Login"}
-          </Text>
-        </Pressable>
-        <Pressable
-          onPress={showLogin ? handleRegister : handleLogin}
-          style={({ pressed }) => [
-            {
-              backgroundColor: pressed ? "#1d4ed8" : "#2563eb",
-            },
-            styles.button,
-          ]}
-        >
-          <Text style={styles.buttonText}>
-            Sign-In With Google
           </Text>
         </Pressable>
         <View style={styles.loginSwitch}>
