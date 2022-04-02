@@ -13,7 +13,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
 import { signOut } from "firebase/auth";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 
 interface Tasks {

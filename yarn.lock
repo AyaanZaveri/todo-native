@@ -1150,7 +1150,7 @@
 
 "@expo/configure-splash-screen@^0.6.0":
   version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@expo/configure-splash-screen/-/configure-splash-screen-0.6.0.tgz#07d97ee512fd859fcc09506ba3762fd6263ebc39"
+  resolved "https://registry.npmjs.org/@expo/configure-splash-screen/-/configure-splash-screen-0.6.0.tgz"
   integrity sha512-4DyPoNXJqx9bN4nEwF3HQreo//ECu7gDe1Xor3dnnzFm9P/VDxAKdbEhA0n+R6fgkNfT2onVHWijqvdpTS3Xew==
   dependencies:
     color-string "^1.5.3"
@@ -1164,7 +1164,7 @@
 
 "@expo/image-utils@0.3.18":
   version "0.3.18"
-  resolved "https://registry.yarnpkg.com/@expo/image-utils/-/image-utils-0.3.18.tgz#36a41ab2925974ac5707e02cb0d3694349140497"
+  resolved "https://registry.npmjs.org/@expo/image-utils/-/image-utils-0.3.18.tgz"
   integrity sha512-77/ub2aGuf7SYfaFhvCHE54Hs/jRuU5j+pemS5seLfVHNwHbJSse91TMhsTLLNz3GwwqTxFVe3KMycSccJ73nA==
   dependencies:
     "@expo/spawn-async" "1.5.0"
@@ -1228,7 +1228,7 @@
 
 "@expo/prebuild-config@^3.0.15":
   version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@expo/prebuild-config/-/prebuild-config-3.1.0.tgz#9fa10f12745ecaa6d3d4957ba97142edb8747a85"
+  resolved "https://registry.npmjs.org/@expo/prebuild-config/-/prebuild-config-3.1.0.tgz"
   integrity sha512-Vwz2L3brsrvLVDBXj2gcB2QfeyAPKxa7rCOSFnPhyHf2qpxtmncv9IVrSdkHyWlPW7KmFVfiRsT3/nHXoataqQ==
   dependencies:
     "@expo/config" "6.0.19"
@@ -1250,7 +1250,7 @@
 
 "@expo/spawn-async@1.5.0":
   version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@expo/spawn-async/-/spawn-async-1.5.0.tgz#799827edd8c10ef07eb1a2ff9dcfe081d596a395"
+  resolved "https://registry.npmjs.org/@expo/spawn-async/-/spawn-async-1.5.0.tgz"
   integrity sha512-LB7jWkqrHo+5fJHNrLAFdimuSXQ2MQ4lA7SQW5bf/HbsXuV2VrT/jN/M8f/KoWt0uJMGN4k/j7Opx4AvOOxSew==
   dependencies:
     cross-spawn "^6.0.5"
@@ -2050,7 +2050,7 @@
     "@types/react" "*"
     "@types/react-native" "*"
 
-"@types/react-native@*", "@types/react-native@~0.64.12":
+"@types/react-native@*", "@types/react-native@^0.64.24":
   version "0.64.24"
   resolved "https://registry.npmjs.org/@types/react-native/-/react-native-0.64.24.tgz"
   integrity sha512-qgqOJub7BYsAkcg3VSL3w63cgJdLoMmAX6TSTAPL53heCzUkIdtpWqjyNRH0n7jPjxPGG1Qmsv6GSUh7IfyqRg==
@@ -2753,7 +2753,7 @@ commander@^4.0.0:
 
 commander@^5.1.0:
   version "5.1.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
+  resolved "https://registry.npmjs.org/commander/-/commander-5.1.0.tgz"
   integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
 
 commander@^7.2.0:
@@ -2896,7 +2896,7 @@ cross-spawn@^6.0.0, cross-spawn@^6.0.5:
 
 crypto-random-string@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
+  resolved "https://registry.npmjs.org/crypto-random-string/-/crypto-random-string-1.0.0.tgz"
   integrity sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
 
 css-color-keywords@^1.0.0:
@@ -3260,6 +3260,11 @@ expo-auth-session@~3.5.0:
     invariant "^2.2.4"
     qs "6.9.1"
 
+expo-checkbox@~2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/expo-checkbox/-/expo-checkbox-2.0.0.tgz#417f5e6c4e3b4404e479064adab841bb2bef4d74"
+  integrity sha512-ZvDdpHRyyTd6P4JnqqJKyLzg8iKrvhHSXOKBK2uc/Xq5MWBj1JNtn2FCGs0oNpG9H1rt8/gV86Wzy96onxE7bw==
+
 expo-constants@~13.0.0, expo-constants@~13.0.2:
   version "13.0.2"
   resolved "https://registry.npmjs.org/expo-constants/-/expo-constants-13.0.2.tgz"
@@ -3343,7 +3348,7 @@ expo-random@~12.1.1:
 
 expo-splash-screen@~0.14.1:
   version "0.14.2"
-  resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.14.2.tgz#2598d6980e71ecd8b7467ca821fb9dbfb80f355b"
+  resolved "https://registry.npmjs.org/expo-splash-screen/-/expo-splash-screen-0.14.2.tgz"
   integrity sha512-X25D/0E2AWEFGgDWIVXZ5Bl7FhYk7TgVhEWvplBqrDY7G7vg5l1aoH6PelOQINWPsa1dcRyA7REdN2ltO+0LAw==
   dependencies:
     "@expo/configure-splash-screen" "^0.6.0"
@@ -4197,7 +4202,7 @@ jetifier@^1.6.2:
 
 jimp-compact@0.16.1:
   version "0.16.1"
-  resolved "https://registry.yarnpkg.com/jimp-compact/-/jimp-compact-0.16.1.tgz#9582aea06548a2c1e04dd148d7c3ab92075aefa3"
+  resolved "https://registry.npmjs.org/jimp-compact/-/jimp-compact-0.16.1.tgz"
   integrity sha512-dZ6Ra7u1G8c4Letq/B5EzAxj4tLFHL+cGtdpR+PVm4yzPDj+lCk+AbivWt1eOM+ikzkowtyV7qSqX6qr3t71Ww==
 
 joi@^17.2.1:
@@ -5280,7 +5285,7 @@ parse-json@^5.0.0:
 
 parse-png@^2.1.0:
   version "2.1.0"
-  resolved "https://registry.yarnpkg.com/parse-png/-/parse-png-2.1.0.tgz#2a42ad719fedf90f81c59ebee7ae59b280d6b338"
+  resolved "https://registry.npmjs.org/parse-png/-/parse-png-2.1.0.tgz"
   integrity sha512-Nt/a5SfCLiTnQAjx3fHlqp8hRgTL3z7kTQZzvIMS9uCAepnCyjpdEc6M/sz69WqMBdaDBw9sF1F1UaHROYzGkQ==
   dependencies:
     pngjs "^3.3.0"
@@ -5369,12 +5374,12 @@ plist@^3.0.1, plist@^3.0.4:
 
 pngjs@^3.3.0:
   version "3.4.0"
-  resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-3.4.0.tgz#99ca7d725965fb655814eaf65f38f12bbdbf555f"
+  resolved "https://registry.npmjs.org/pngjs/-/pngjs-3.4.0.tgz"
   integrity sha512-NCrCHhWmnQklfH4MtJMRjZ2a8c80qXeMlQMv2uVp9ISJMTt562SbGd6n2oq0PaPgKm7Z6pL9E2UlLIhC+SHL3w==
 
 pngjs@^5.0.0:
   version "5.0.0"
-  resolved "https://registry.yarnpkg.com/pngjs/-/pngjs-5.0.0.tgz#e79dd2b215767fd9c04561c01236df960bce7fbb"
+  resolved "https://registry.npmjs.org/pngjs/-/pngjs-5.0.0.tgz"
   integrity sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==
 
 posix-character-classes@^0.1.0:
@@ -6397,7 +6402,7 @@ tailwind-rn@^4.2.0:
 
 temp-dir@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/temp-dir/-/temp-dir-1.0.0.tgz#0a7c0ea26d3a39afa7e0ebea9c1fc0bc4daa011d"
+  resolved "https://registry.npmjs.org/temp-dir/-/temp-dir-1.0.0.tgz"
   integrity sha1-CnwOom06Oa+n4OvqnB/AvE2qAR0=
 
 temp@0.8.3:
@@ -6417,7 +6422,7 @@ temp@^0.8.1:
 
 tempy@0.3.0:
   version "0.3.0"
-  resolved "https://registry.yarnpkg.com/tempy/-/tempy-0.3.0.tgz#6f6c5b295695a16130996ad5ab01a8bd726e8bf8"
+  resolved "https://registry.npmjs.org/tempy/-/tempy-0.3.0.tgz"
   integrity sha512-WrH/pui8YCwmeiAoxV+lpRH9HpRtgBhSR2ViBPgpGb/wnYDzp21R4MN45fsCGvLROvY67o3byhJRYRONJyImVQ==
   dependencies:
     temp-dir "^1.0.0"
@@ -6532,7 +6537,7 @@ type-fest@^0.13.1:
 
 type-fest@^0.3.1:
   version "0.3.1"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.3.1.tgz#63d00d204e059474fe5e1b7c011112bbd1dc29e1"
+  resolved "https://registry.npmjs.org/type-fest/-/type-fest-0.3.1.tgz"
   integrity sha512-cUGJnCdr4STbePCgqNFbpVNCepa+kAVohJs1sLhxzdH+gnEoOd8VhbYa7pD3zZYGiURWM2xzEII3fQcRizDkYQ==
 
 type-fest@^0.6.0:
@@ -6608,7 +6613,7 @@ union-value@^1.0.0:
 
 unique-string@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/unique-string/-/unique-string-1.0.0.tgz#9e1057cca851abb93398f8b33ae187b99caec11a"
+  resolved "https://registry.npmjs.org/unique-string/-/unique-string-1.0.0.tgz"
   integrity sha1-nhBXzKhRq7kzmPizOuGHuZyuwRo=
   dependencies:
     crypto-random-string "^1.0.0"
@@ -6847,7 +6852,7 @@ xcode@^3.0.0, xcode@^3.0.1:
 
 xml-js@^1.6.11:
   version "1.6.11"
-  resolved "https://registry.yarnpkg.com/xml-js/-/xml-js-1.6.11.tgz#927d2f6947f7f1c19a316dd8eea3614e8b18f8e9"
+  resolved "https://registry.npmjs.org/xml-js/-/xml-js-1.6.11.tgz"
   integrity sha512-7rVi2KMfwfWFl+GpPg6m80IVMWXLRjO+PxTq7V2CDhoGak0wzYzFgUY2m4XJ47OGdXd8eLE8EmwfAmdjw7lC1g==
   dependencies:
     sax "^1.2.4"
