@@ -1,6 +1,7 @@
 import {
   Button,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -78,9 +79,9 @@ const Home = () => {
 
   return (
     <SafeAreaView>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text style={styles.headingLg}>Tacit</Text>
-        <Button title="Logout" onPress={() => signOut(auth)} />
+        {/* <Button title="Logout" onPress={() => signOut(auth)} /> */}
         <View style={styles.addTask}>
           <TextInput
             value={text}
@@ -121,7 +122,7 @@ const Home = () => {
             />
           ))}
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -132,6 +133,7 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     paddingHorizontal: 24,
+    height: "100%",
   },
   headingLg: {
     fontSize: 32,
