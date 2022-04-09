@@ -32,7 +32,7 @@ interface Tasks {
 
 const Home = () => {
   const [text, setText] = useState<string>("");
-  const [tasks, setTasks] = useState<any>([]);
+  const [tasks, setTasks] = useState<Tasks[]>([]);
 
   const [user] = useAuthState(auth);
 

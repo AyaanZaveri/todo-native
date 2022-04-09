@@ -353,7 +353,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ayaanzaveri.todo;
-				PRODUCT_NAME = "todo";
+				PRODUCT_NAME = todo;
 				SWIFT_OBJC_BRIDGING_HEADER = "todo/todo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -379,7 +379,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ayaanzaveri.todo;
-				PRODUCT_NAME = "todo";
+				PRODUCT_NAME = todo;
 				SWIFT_OBJC_BRIDGING_HEADER = "todo/todo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
